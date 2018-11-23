@@ -1,0 +1,26 @@
+.add-container {
+    border: 2px solid #000;
+    border-radius: 15px;
+    padding: 10px;
+}
+.add-container h1 {
+    text-align: center;
+}
+
+.add-form {
+    display: grid;
+    grid-template-columns: 15% 85%;
+    grid-gap: 5px;
+    width: 60%;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.add-form button {
+    grid-column: -1/1;
+    width: 50%;
+    margin: 0 auto;
+    border: 2px solid #000;
+    border-radius: 15px;
+    background: #fff;
+}

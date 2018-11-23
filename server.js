@@ -1,53 +1,86 @@
 const express = require('express');
 const bodyParser = require('body-parser');
+const mongoClient = require('mongodb').MongoClient;
+const dbConnectionURL = "mongodb://localhost:27017";
+
 const app = express();
 app.use(bodyParser.json());
-let todos = []; 
+app.use(bodyParser.urlencoded({
+    extended: true
+}))
+app.use(express.static(__dirname+"/dist/todo-app"));
 
-app.get("/", (req, res) => {
-    res.status(200).send("Express WEB API!");
-});
 
 app.get("/get-all-todos", (req, res) =>{
-    res.status(200).send(todos);
+    mongoClient.connect(dbConnectionURL, (err, database) => {
+        if(err) throw err;
+        let db = database.db("taskAppDB");
+        db.collection("tasks").find().toArray((err, result) =>{
+            if(err) throw err;
+            database.close();
+            res.status(200).send(result);
+        });
+    });
 });
 
 app.post("/add-todo", (req, res) => {
     if(req.body){
-        todo = {};
+        let todo = {};
         todo.taskName = req.body.taskName;
         todo.priority = req.body.priority;
         todo.duration = req.body.duration;
         todo.isDone = false;
-        todos.push(todo);
-        res.status(200).send("Task added successfully");
+        mongoClient.connect(dbConnectionURL, (err, database) => {
+            if(err) throw err;
+            let db = database.db("taskAppDB");
+            db.collection("tasks").insertOne(todo, (err, result) =>{
+                if(err) throw err;
+                database.close();
+                res.status(200).send("Task added successfully");  
+            });
+        });
     } else {
         res.status(500).send("Wrong body format!");
     }
 });
 
-app.put("/todo/:id/update", (req, res) =>{
-    if(req.params.id < todos.length && req.params.id >= 0){
-        todos.forEach((e, index) =>{
-            if(index == req.params.id){
-                e.isDone = !e.isDone;
-                res.status(200)
-                    .send(`${e.taskName} is done: ${e.isDone}`);
-            }
-        });
-    } else {
-        res.status(500).send("Invalid id!");
-    }
+app.put("/todo/update", (req, res) =>{
+    mongoClient.connect(dbConnectionURL, (err, database) =>{
+        if(err) throw err;
+        let db = database.db('taskAppDB');
+        let condition = { taskName: req.body.taskName }
+        db.collection("tasks").updateOne(condition,
+                {$set: {isDone: true}}, (err, result) => {
+                    if(err) throw err;
+                    database.close();
+                    if(result.result.n !==0 && result.result.nModified !== 0){
+                        res.status(200).send(result);
+                    } else if(result.result.n !==0 && result.result.nModified === 0){
+                        res.status(304).send("Task was not modified.");
+                    } else {
+                        res.status(500).send("Task not found to update.");
+                    } 
+                });
+    });
 });
 
-app.delete("/todo/:id/delete", (req, res) =>{
-    if(req.params.id < todos.length && req.params.id >= 0){
-        let todo = todos[req.params.id];
-        todos.splice(req.params.id, 1);
-        res.status(200).send(`${todo.taskName} was deleted successfully!`);
-    } else {
-        res.status(500).send("Invalid id to delete!");
-    }
+app.delete("/todo/delete", (req, res) =>{
+    mongoClient.connect(dbConnectionURL, (err, database) =>{
+        if(err) throw err;
+        let db = database.db("taskAppDB");
+        let condition = { taskName: req.body.taskName };
+        db.collection("tasks").deleteOne(condition,(err, result) =>{
+            if(err) throw err;
+            database.close();
+            console.log(result);
+            if(result.result.n !== 0){
+                res.status(200).send(result);
+            } else {
+                res.status(500).send("Cannot find task to delete");
+            }
+            
+        });
+    });
 });
 
 app.listen(9099, ()=>{
