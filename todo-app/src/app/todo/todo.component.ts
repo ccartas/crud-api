@@ -1,5 +1,8 @@
 import { Component } from '@angular/core';
+<<<<<<< HEAD
 import { Todo } from '../common/models/todo';
+=======
+>>>>>>> 7a675035078d9a7286d53c6ffab12a1e40b6ecd7
 
 @Component({
     selector: 'app-todo',
@@ -7,6 +10,7 @@ import { Todo } from '../common/models/todo';
     styleUrls: ['./todo.component.css']
 })
 export class TodoComponent {
+<<<<<<< HEAD
     title = "Todo App";
 
     toDoTasks: Todo[] = []
@@ -35,4 +39,7 @@ export class TodoComponent {
     }
 
 
+=======
+    addTaskTitle = "Add Task";
+>>>>>>> 7a675035078d9a7286d53c6ffab12a1e40b6ecd7
 }

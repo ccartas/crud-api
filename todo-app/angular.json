@@ -9,7 +9,11 @@
       "projectType": "application",
       "prefix": "app",
       "schematics": {},
+<<<<<<< HEAD
       "targets": {
+=======
+      "architect": {
+>>>>>>> 7a675035078d9a7286d53c6ffab12a1e40b6ecd7
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
@@ -43,7 +47,18 @@
               "aot": true,
               "extractLicenses": true,
               "vendorChunk": false,
+<<<<<<< HEAD
               "buildOptimizer": true
+=======
+              "buildOptimizer": true,
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "2mb",
+                  "maximumError": "5mb"
+                }
+              ]
+>>>>>>> 7a675035078d9a7286d53c6ffab12a1e40b6ecd7
             }
           }
         },
@@ -98,7 +113,12 @@
     "todo-app-e2e": {
       "root": "e2e/",
       "projectType": "application",
+<<<<<<< HEAD
       "targets": {
+=======
+      "prefix": "",
+      "architect": {
+>>>>>>> 7a675035078d9a7286d53c6ffab12a1e40b6ecd7
         "e2e": {
           "builder": "@angular-devkit/build-angular:protractor",
           "options": {

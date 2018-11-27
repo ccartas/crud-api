@@ -1,4 +1,5 @@
 <div class="add-container">
+<<<<<<< HEAD
     <label>Task:</label><input #taskName type="text" placeholder="Task name"/>
     <label>Priority: </label><select #priority>
         <option>Priority</option>
@@ -8,4 +9,18 @@
     </select>
     <label>Duration</label><input #duration type="number" value="0"/>
     <button (click)="addTodo(taskName, priority, duration)">ADD</button>
+=======
+    <h1>{{title}}</h1>
+    <div class="add-form">
+        <label>Task Name:</label><input type="text" placeholder="Task Name" />
+        <label>Priority:</label><select>
+            <option>Priority</option>
+            <option>Low</option>
+            <option>Medium</option>
+            <option>High</option>
+        </select>
+        <label>Duration: </label><input type="text" placeholder="Duration" />
+        <button>Add Task</button>
+    </div>
+>>>>>>> 7a675035078d9a7286d53c6ffab12a1e40b6ecd7
 </div>
