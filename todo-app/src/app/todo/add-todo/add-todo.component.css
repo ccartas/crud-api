@@ -1,0 +1,17 @@
+.add-container {
+    padding: 20px;
+    display: grid;
+    width: 30%;
+    margin: 0 auto;
+    grid-template-columns: 15% 80%;
+    grid-gap: 20px;
+    border: 2px solid #000;
+    border-radius: 15px;
+    text-align: center;
+}
+
+.add-container button {
+    grid-column: -1/1;
+    width: 40%;
+    margin: 0 auto;
+}
