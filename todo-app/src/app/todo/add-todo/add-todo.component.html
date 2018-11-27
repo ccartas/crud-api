@@ -1,0 +1,11 @@
+<div class="add-container">
+    <label>Task:</label><input #taskName type="text" placeholder="Task name"/>
+    <label>Priority: </label><select #priority>
+        <option>Priority</option>
+        <option>Low</option>
+        <option>Medium</option>
+        <option>High</option>
+    </select>
+    <label>Duration</label><input #duration type="number" value="0"/>
+    <button (click)="addTodo(taskName, priority, duration)">ADD</button>
+</div>
