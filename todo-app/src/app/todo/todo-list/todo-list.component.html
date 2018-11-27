@@ -4,6 +4,8 @@
         <div *ngFor="let todo of source;let i = index"
         class="todo-item"
         (click)="todoClicked(i)"
+        itemColor
+        [elementType]="listType"
         [ngStyle]="cutElement()"
         [ngSwitch]="i">
             {{todo.taskName}}

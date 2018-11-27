@@ -1,16 +1,24 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 
 @Component({
     selector: 'app-todo',
     templateUrl: './todo.component.html',
     styleUrls: ['./todo.component.css']
 })
-export class TodoComponent {
+export class TodoComponent implements OnInit{
     addTaskTitle = "Add Task";
 
     todos = [];
     doing = [];
     done = [];
+
+    ngOnInit(){
+        console.log('Called OnInit: TodoComponent');
+    }
+
+    ngDoCheck(){
+        console.log('Called doCheck: TodoComponent')
+    }
 
     onTodoAdded(todoItem){
         this.todos.push(todoItem);

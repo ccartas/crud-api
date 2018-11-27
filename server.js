@@ -8,6 +8,16 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({
     extended: true
 }))
+
+app.use((req, res, next) => {
+
+    res.setHeader('Access-Control-Allow-Origin', '*');
+    res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, OPTIONS');
+    res.setHeader('Access-Control-Allow-Headers', 'content-type');
+
+    next();
+});
+
 app.use(express.static(__dirname+"/dist/todo-app"));
 
 
@@ -30,6 +40,7 @@ app.post("/add-todo", (req, res) => {
         todo.priority = req.body.priority;
         todo.duration = req.body.duration;
         todo.isDone = false;
+        console.log(todo);
         mongoClient.connect(dbConnectionURL, (err, database) => {
             if(err) throw err;
             let db = database.db("taskAppDB");
