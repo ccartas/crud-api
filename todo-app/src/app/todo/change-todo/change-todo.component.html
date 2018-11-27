@@ -1,0 +1,4 @@
+<div>
+    <button *ngIf="listType=='todo'" (click)="changeStatus('doing')">Doing</button>
+    <button *ngIf="listType=='doing'" (click)="changeStatus('done')">Done</button>
+</div>

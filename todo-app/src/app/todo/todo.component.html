@@ -1,0 +1,26 @@
+<div>
+    <add-todo
+    [title]="addTaskTitle"
+    (todoAdded)="onTodoAdded($event)"
+    >
+    </add-todo>
+    <div class="lists-container">
+        <todo-list
+        title="To Do..."
+        listType="todo"
+        [source]="todos"
+        (changeStatus)="onStatusChanged($event)"
+        ></todo-list>
+        <todo-list
+        title="Doing..."
+        listType="doing"
+        [source]="doing"
+        (changeStatus)="onStatusChanged($event)"
+        ></todo-list>
+        <todo-list
+        title="Done"
+        [source]="done"
+        listType="done"
+        ></todo-list>
+    </div>
+</div>

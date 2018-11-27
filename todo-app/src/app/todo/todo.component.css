@@ -1,0 +1,5 @@
+.lists-container {
+    display: grid;
+    grid-template-columns: repeat(3, 33%);
+    text-align: center;
+}

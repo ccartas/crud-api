@@ -1,0 +1,16 @@
+<div>
+    <h1>{{title}}</h1>
+    <div class="item-container">
+        <div *ngFor="let todo of source;let i = index"
+        class="todo-item"
+        (click)="todoClicked(i)"
+        [ngStyle]="cutElement()"
+        [ngSwitch]="i">
+            {{todo.taskName}}
+            <change-todo *ngSwitchCase="elementIndex"
+            [listType]="listType"
+            (statusChange)="onStatusChanged($event)"
+            ></change-todo>
+        </div>
+    </div>
+</div>
