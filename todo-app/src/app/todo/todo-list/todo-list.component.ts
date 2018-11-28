@@ -1,9 +1,10 @@
-import { Component, Input, Output, EventEmitter, OnInit } from '@angular/core';
+import { Component, Input, Output, EventEmitter, OnInit, ChangeDetectionStrategy, ChangeDetectorRef } from '@angular/core';
 
 @Component({
     selector: 'todo-list',
     templateUrl: './todo-list.component.html',
-    styleUrls: ['./todo-list.component.css']
+    styleUrls: ['./todo-list.component.css'],
+    changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class TodoListComponent implements OnInit{
     @Input() title: string;
@@ -11,6 +12,11 @@ export class TodoListComponent implements OnInit{
     @Input() source;
     @Output() changeStatus: EventEmitter<any> = new EventEmitter();
     elementIndex: number = -1;
+    numberOfItems: number;
+
+    constructor(private changeDetector: ChangeDetectorRef){
+
+    }
 
     ngOnChanges() {
         console.log('Called OnChanges: TodoListComponent')
@@ -22,6 +28,10 @@ export class TodoListComponent implements OnInit{
 
     ngDoCheck(){
         console.log('Called doCheck: TodoListComponent')
+        if(this.numberOfItems !== this.source.length){
+            this.numberOfItems = this.source.length;
+            this.changeDetector.detectChanges();
+        }
     }
     
 

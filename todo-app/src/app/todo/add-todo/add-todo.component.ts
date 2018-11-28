@@ -11,8 +11,9 @@ export class AddTodoComponent {
 
     @Input() title: string;
     @Output() todoAdded: EventEmitter<Todo> = new EventEmitter();
-
-    todo: Todo;
+    taskName:string = '';
+    priority: string = 'Priority';
+    duration: number = 0;
 
     constructor(private todoService: TodoService){
 
@@ -22,19 +23,22 @@ export class AddTodoComponent {
         console.log('Called doCheck: AddTodoComponent')
     }
 
-    addTodo(taskName, priority, duration){
-        this.todo = new Todo();
-        this.todo.taskName = taskName.value;
-        this.todo.priority = priority.value;
-        this.todo.duration = duration.value;
-        this.todoService.addTodo(this.todo).then((res) =>{
+    addTodo(){
+        let todo: Todo = new Todo();
+        todo.taskName = this.taskName;
+        todo.priority = this.priority;
+        todo.duration = this.duration;
+        this.todoService.addTodo(todo).then((res) =>{
             console.log(res);
         })
-        taskName.value = "";
-        priority.value = "Priority";
-        duration.value = 0;
-        
         this.todoService.sendAction('todo');
-        this.todoAdded.emit(this.todo);
+        this.todoAdded.emit(todo);
+        this.clearFields();
+    }
+
+    clearFields(){
+        this.taskName = '';
+        this.priority = 'Priority';
+        this.duration = 0;
     }
 }

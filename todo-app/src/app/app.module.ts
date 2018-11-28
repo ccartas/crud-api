@@ -10,6 +10,10 @@ import { OverviewComponent } from './overview/overview.component';
 import { TodoLabelDirective } from './todo/todo-list/todo-list.directive';
 import { HttpClientModule } from '@angular/common/http';
 
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { LettersOnlyDirective } from './common/directives/only-letters.directive';
+import { RTSearchComponent } from './common/components/rtsearch/rtsearch.component';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -18,11 +22,15 @@ import { HttpClientModule } from '@angular/common/http';
     TodoListComponent,
     ChangeTodoComponent,
     OverviewComponent,
-    TodoLabelDirective
+    TodoLabelDirective,
+    LettersOnlyDirective,
+    RTSearchComponent
   ],
   imports: [
     BrowserModule,
-    HttpClientModule
+    HttpClientModule,
+    FormsModule,
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

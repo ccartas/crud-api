@@ -1,14 +1,14 @@
 <div class="add-container">
     <h1>{{title}}</h1>
     <div class="add-form">
-        <label>Task Name:</label><input #taskName type="text" placeholder="Task Name" />
-        <label>Priority:</label><select #priority>
+        <label>Task Name:</label><input [(ngModel)]="taskName" type="text" placeholder="Task Name" lettersOnly />
+        <label>Priority:</label><select [(ngModel)]="priority">
             <option>Priority</option>
             <option>Low</option>
             <option>Medium</option>
             <option>High</option>
         </select>
-        <label>Duration: </label><input #duration type="number" placeholder="Duration" value=0/>
-        <button (click)="addTodo(taskName, priority, duration)">Add Task</button>
+        <label>Duration: </label><input [(ngModel)]="duration" type="number" placeholder="Duration" value=0/>
+        <button (click)="addTodo()">Add Task</button>
     </div>
 </div>

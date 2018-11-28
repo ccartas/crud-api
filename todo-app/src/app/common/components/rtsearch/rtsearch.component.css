@@ -1,0 +1,15 @@
+.rt-container {
+    width: 100%;
+    display: grid;
+    margin-top: 10px;
+}
+
+.rt-container input {
+    width: 60%;
+    margin: 0 auto;
+    border: 2px solid #000;
+    border-radius: 15px;
+    text-align: center;
+    line-height: 2em;
+    font-size: 1.5em;
+}

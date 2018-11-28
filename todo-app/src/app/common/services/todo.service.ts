@@ -25,4 +25,8 @@ export class TodoService {
         return this.httpClient.post('http://localhost:9099/add-todo',
                             todo, {responseType: 'text'}).toPromise();
     }
+
+    getAllTodos(){
+        return this.httpClient.get('http://localhost:9099/get-all-todos').toPromise();
+    }
 }

@@ -4,11 +4,15 @@
     (todoAdded)="onTodoAdded($event)"
     >
     </add-todo>
+    <app-rtsearch
+    [inputData]="todos"
+    (foundData)="onTodosFound($event)"
+    ></app-rtsearch>
     <div class="lists-container">
         <todo-list
         title="To Do..."
         listType="todo"
-        [source]="todos"
+        [source]="filterTodos"
         (changeStatus)="onStatusChanged($event)"
         ></todo-list>
         <todo-list
