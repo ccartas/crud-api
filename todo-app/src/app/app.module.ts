@@ -13,6 +13,10 @@ import { HttpClientModule } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { LettersOnlyDirective } from './common/directives/only-letters.directive';
 import { RTSearchComponent } from './common/components/rtsearch/rtsearch.component';
+import { AppRouterModule } from './app.router';
+import { LoginComponent } from './login/login.component';
+import { HomeComponent } from './home/home.component';
+import { UnauthorizedComponent } from './common/components/unauthorized/unauthorized.component';
 
 @NgModule({
   declarations: [
@@ -24,13 +28,17 @@ import { RTSearchComponent } from './common/components/rtsearch/rtsearch.compone
     OverviewComponent,
     TodoLabelDirective,
     LettersOnlyDirective,
-    RTSearchComponent
+    RTSearchComponent,
+    LoginComponent,
+    HomeComponent,
+    UnauthorizedComponent
   ],
   imports: [
     BrowserModule,
     HttpClientModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    AppRouterModule
   ],
   providers: [],
   bootstrap: [AppComponent]
